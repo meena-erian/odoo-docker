@@ -1,0 +1,30 @@
+version: '2'
+services:
+  proxy:
+    build: ./nginx
+    depends_on: 
+      - web
+    ports: 
+      - "5443:5443"
+    volumes:
+      - C:/Certbot:/etc/nginx/certs
+  web:
+    build: .
+    depends_on:
+      - db
+    volumes:
+      - odoo-web-data:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+  db:
+    image: postgres:10
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
+volumes:
+  odoo-web-data:
+  odoo-db-data:
