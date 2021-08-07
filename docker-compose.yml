@@ -12,8 +12,10 @@ services:
     build: .
     depends_on:
       - db
+    ports: 
+      - "5442:5443"
     volumes:
-      - C:/Data/odoo-web-data:/var/lib/odoo
+      - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
   db:
@@ -24,7 +26,7 @@ services:
       - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - C:/Data/odoo-db-data:/var/lib/postgresql/data/pgdata
+      - odoo-db-data:/var/lib/postgresql/data/pgdata
 volumes:
   odoo-web-data:
   odoo-db-data:
