@@ -8,6 +8,7 @@ services:
       - "5443:5443"
     volumes:
       - C:/Certbot:/etc/nginx/certs
+    restart: always
   web:
     build: .
     depends_on:
@@ -18,6 +19,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+    restart: always
   db:
     image: postgres:10
     environment:
@@ -27,6 +29,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
+    restart: always
 volumes:
   odoo-web-data:
   odoo-db-data:
