@@ -1,1 +1,1 @@
-docker-compose up --remove-orphans --detach --build
+docker-compose --env-file ./.env up --remove-orphans --detach --build
