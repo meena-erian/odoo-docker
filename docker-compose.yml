@@ -10,8 +10,14 @@ services:
       - web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
+    environment: 
+      - HOST=db
+      - USER=${ODOO_DATABASE_USER}
+      - PASSWORD=${ODOO_DATABASE_PASSWORD}
   db:
     image: postgres:10
+    ports: 
+      - "432:5432"
     environment:
       - POSTGRES_DB=${ODOO_DATABASE_NAME}
       - POSTGRES_PASSWORD=${ODOO_DATABASE_PASSWORD}
