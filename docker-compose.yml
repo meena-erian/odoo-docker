@@ -5,7 +5,7 @@ services:
     depends_on:
       - db
     ports: 
-      - "5442:5443"
+      - "80:5443"
     volumes:
       - web-data:/var/lib/odoo
       - ./config:/etc/odoo
@@ -14,10 +14,11 @@ services:
       - HOST=db
       - USER=${ODOO_DATABASE_USER}
       - PASSWORD=${ODOO_DATABASE_PASSWORD}
+    restart: always
   db:
     image: postgres:10
     ports: 
-      - "432:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_DB=${ODOO_DATABASE_NAME}
       - POSTGRES_PASSWORD=${ODOO_DATABASE_PASSWORD}
@@ -25,6 +26,7 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - db-data:/var/lib/postgresql/data/pgdata
+    restart: always
 volumes:
   web-data:
   db-data:
