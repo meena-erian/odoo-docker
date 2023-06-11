@@ -1,2 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_everlast_fixes_patient,everlast_fixes.patient,model_everlast_fixes_patient,,1,1,1,1
