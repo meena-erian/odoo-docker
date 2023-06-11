@@ -1,3 +1,5 @@
-#/bin/bash
-docker-compose down
-docker-compose --env-file ./.env up --remove-orphans --detach --build
+#!/bin/bash
+
+mkdir -p -m 777 data/pgdata
+mkdir -p -m 777 data/odoo
+docker-compose up --remove-orphans -d
